@@ -229,7 +229,22 @@ function greatestProduct(matrix) {
   return greatest;
 }
 
-
+function greatestProductOfDiagonals(matrix){
+  let greatest = 0;
+  for (let i = 0; i < (matrix.length - 3); i += 1) {
+    for (let j = 0; j < (matrix[i].length - 3); j += 1) {
+      let left =  matrix[i][j] * matrix[i+1][j+1] * matrix[i+2][j+2] * matrix[i+3][j+3];
+      let right = matrix[i+3][j] * matrix[i+2][j+1] * matrix[i+1][j+2] * matrix[i][j+3];
+      
+      if (right <= left && greatest < left) {
+        greatest = left;
+      } else if (left < right && greatest < right){
+        greatest = right;
+      }
+    }
+  }
+  return greatest;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
