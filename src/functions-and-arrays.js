@@ -48,7 +48,23 @@ function sumNumbers(numbersArray) {
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+/*Let's implement the function sum() that calculates the sum for array filled with (almost) any type of data.
+ Note that strings should have their length added to the total, and boolean values should be coerced into their 
+ corresponding numeric values. Check the tests for more details. */
+const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+function sum(mixedArray) {
+  let result = 0;
+  mixedArray.forEach((value) => {
+    if (typeof value === 'number' || typeof value === 'boolean') {
+      result += value;
+    } else if (typeof value === 'string') {
+      result += value.length;
+    } else {
+      throw new Error("Unsupported data type sir or ma'am"); 
+    }
+  })
+  return result;
+}
 
 
 
@@ -56,16 +72,37 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(numbersArray) {
+  if (numbersArray.length === 0) {
+    return null
+  }
+  return sumNumbers(numbersArray)/numbersArray.length;
+}
 
 
 // Level 2: Array of strings
+/*Implement the function named averageWordLength that receives as a single
+ argument an array of words and returns the average length of the words: */
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(wordsArray) {
+  if (wordsArray.length === 0) {
+    return null
+  }
+  let totalLength = 0;
+  wordsArray.forEach((value) => totalLength += value.length);
+  return totalLength/wordsArray.length;
+ }
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(mixedArray) {
+  if (mixedArray.length === 0){
+    return null
+  } else {
+    return parseFloat((sum(mixedArray) / mixedArray.length).toFixed(2));
+  }
+}
+console.log(typeof avg([6, 12, 'miami', 1, 'barca', '200', 'lisboa', 8, false]));
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
