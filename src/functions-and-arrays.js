@@ -1,4 +1,7 @@
 // Iteration #1: Find the maximum
+
+const { H } = require("jest-haste-map");
+
 // Implement the function maxOfTwoNumbers that takes two numbers as arguments and returns the largest.
 function maxOfTwoNumbers(num1, num2) {
   if (num1 > num2){
@@ -209,8 +212,22 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
-
+function greatestProduct(matrix) {
+  let greatest = 0;
+  for (let i = 0; i < (matrix.length - 3); i += 1) {
+    for (let j = 0; j < (matrix[i].length - 3); j += 1) {
+      let horizontal =  matrix[i][j] * matrix[i][j+1] * matrix[i][j+2] * matrix[i][j+3];
+      let vertical = matrix[i][j] * matrix[i+1][j] * matrix[i+2][j] * matrix[i+3][j];
+      
+      if (vertical <= horizontal && greatest < horizontal) {
+        greatest = horizontal;
+      } else if (vertical > horizontal && greatest < vertical){
+        greatest = vertical;
+      }
+    }
+  }
+  return greatest;
+}
 
 
 
